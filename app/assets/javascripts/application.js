@@ -5,4 +5,5 @@
 //= require activestorage
 //= require room_messages
 //= require rooms
+//= require cable
 
