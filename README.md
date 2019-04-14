@@ -1,24 +1,32 @@
-# README
+# Test Rails chat with websockets
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Build
 
-Things you may want to cover:
+```console
+docker run --name rails-chat-tutorial-web \
+            -e DATABASE_HOST=172.17.0.1 \
+            -e DATABASE_PORT=5432 \
+            -e DATABASE_USERNAME=postgres \
+            -e DATABASE_PASSWORD=postgres \
+            -e REDIS_URL=redis://172.17.0.1:6379/1 \
+            -p 3000:3000 \
+            rails-chat-tutorial
+```
 
-* Ruby version
+### Creating the PostgreSQL container
 
-* System dependencies
+```console
+docker run --name rails-chat-tutorial-pg
+       -e POSTGRES_USER=postgres
+       -e POSTGRES_PASSWORD=postgres
+       -p 5432:5432
+       -d postgres
+```
 
-* Configuration
+### Creating the Redis container
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```console
+docker run --name rails-chat-tutorial-redis \
+       -p 6379:6379 \
+       -d redis
+```
